@@ -24,14 +24,15 @@ var thetime :int
 var gdcount :int
 var theweek :String
 
-# Called when the node enters the scene tree for the first time.
+# 上面一坨都是各种引用或者定义变量
+# 下面为主要的方法代码
 func _ready() -> void:
 	get_tree().root.set_transparent_background(true)
 	requestwheather()
 	start()
-	
+	#这个主要是想实现文本以不同的概率出现
 	sentences_rate = [0.001,0.01,0.1,0.1,0.1,0.1,0.1,0.06,0.05,0.1,0.05,0.05,0.05,0.02,0.01,0.099] 
-	
+	#点击头部所有的文本
 	sentences_head = [
 		["我是一只\r\n脆弱的小鸡仔","sad"],
 		["想吃鸡锁骨\r\n＞︿＜","eat1"],
@@ -50,7 +51,7 @@ func _ready() -> void:
 		["我有点晕字了……","sad"],
 		["双击右键\r\n有惊喜","speak"]
 		]
-		
+	#点击躯干所有的文本
 	sentences_body = [
 		["不许摸了！","angerer"],
 		["别再褥我了！","angerer"],
@@ -69,7 +70,7 @@ func _ready() -> void:
 		["今天吃了\r\n三顿饭","eat2"],
 		["欢迎来攒\r\n赛博功德","speak"],
 		]
-	
+	#点击鸡腿所有的文本
 	sentences_legs = [
 		["今天我\r\n哪里也没去","sad"],
 		["你想出去玩吗","happyer"],
@@ -88,13 +89,13 @@ func _ready() -> void:
 		["和你一样\r\n我也是两足兽","speak"],
 		["现在还没有功德","speak"]
 		]
-		
+	#用于提醒的语句
 	sentences_warn = [
 		"学了这么久\r\n休息一下吧","定时休息\r\n效率更高哦","这么专注！\r\n你最棒啦！",
 		"我猜你渴了\r\n喝点水么","起来走走吧\r\n记得喝水~","多喝水可以\r\n缓解疲劳~",
 		"学得怎么样\r\n记得保存文件哦","记得按\r\n保存键哦","这种大作！\r\n记得保存呀~",
 	]
-	
+	#从睡眠状态切换到空闲状态会说的话
 	sentences_awake = [
 		"谁在打扰\r\n我睡觉？",
 		"我还没梦到\r\n结局呢",
@@ -112,7 +113,7 @@ func _ready() -> void:
 		"你刚刚是不是\r\n戳了我一下",
 		"梦见自己\r\n被做成烤鸡了"
 	]
-	
+	#点击聪明毛会显示的文本
 	sentences_hair = [
 		["这是我的\r\n聪明毛","happyer"],
 		["再摸就要秃了","sad"],
@@ -131,13 +132,14 @@ func _ready() -> void:
 		["想要请你\r\n帮我梳毛","happyer"],
 		["你想敲木鸡吗","speak"],
 	]
-	
+	#这个用来储存功德数
 	gdcount = 0
-	
+	#用于获得系统时间
 	gettime()
+	#用于补全之前的文本预留位
 	food_to_eat()
 
-func start() -> void:
+func start() -> void: # 这个是打开软件的初始动画，也就是介绍基本功能
 	var sentences_start = ["你好，\r\n我是世轩鸡","左键点击\r\n听我说话","长按右键\r\n移动我","双击右键\r\n可以敲木鸡","Alt+P\r\n退出桌宠","还有很多内容\r\n期待你的探索~"]
 	for i in range(len(sentences_start)):
 		Game_manager.text_showing = true
@@ -148,14 +150,14 @@ func start() -> void:
 		
 
 
-func  _unhandled_input(event: InputEvent) -> void:
+func  _unhandled_input(event: InputEvent) -> void:# 退出游戏
 	if event.is_action_pressed("quitgame"):
 		get_tree().quit()
 
-func  requestwheather() -> void:
-	weatherapi.request("https://restapi.amap.com/v3/weather/weatherInfo?Key=38374aa3758ae5eead673d2c90bc0ced&city=430104")
+func  requestwheather() -> void: #获取实时天气数据，这里我用的高德地图的API，key=后面填自己的密匙，city=可以填自己想要的城市代码
+	weatherapi.request("https://restapi.amap.com/v3/weather/weatherInfo?Key=***&city=***")
 
-func update_gd() ->void:
+func update_gd() ->void:#这个用来实现不同功德显示不同对话
 	if gdcount > 100 :
 		sentences_body[15][0] = "目前的功德\r\n破百了！"
 		sentences_head[15][0] = "涨功德的同时\r\n可以涨智力吗"
@@ -174,13 +176,13 @@ func update_gd() ->void:
 		pass
 
 
-func food_to_eat() ->void:
+func food_to_eat() ->void:#为了丰富对话，让其中的某一句可以呈现变化的食物
 	var sentences_food = ["鸭腿饭","泡面","炒饭","银耳羹","冰糖雪梨","转转火锅","烤肠","火龙果","蛋包肠","自助烤肉","肠粉","茶叶蛋","鸡胸肉","食堂","饺子","红豆面包"]
 	var randomin = sentences_food.pick_random()
 	sentences_body[11][0] = "今天吃了\r\n" + randomin
 
 	
-func gettime() -> void:
+func gettime() -> void:#用于提醒星期几的对话
 	var times = Time.get_datetime_dict_from_system() as Dictionary
 	var weekkey = {"工作日":{1:"周一",2:"周二",3:"周三",4:"周四",5:"周五"},"周末":{6:"周六",7:"周日"}}
 	if times.weekday in [1,2,3,4,5]:
@@ -208,7 +210,7 @@ func gettime() -> void:
 
 
 
-func _on_weatherapi_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+func _on_weatherapi_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:#用于提醒天气的对话
 	var json := JSON.parse_string(body.get_string_from_utf8()) as Dictionary
 	theday = json.lives[0].weather as String
 	temperature = json.lives[0].temperature as String
@@ -223,12 +225,12 @@ func _on_weatherapi_request_completed(result: int, response_code: int, headers: 
 
 
 
-func _on_weath_timer_timeout() -> void:
+func _on_weath_timer_timeout() -> void:#定时获取天气和时间数据
 	requestwheather()
 	gettime()
 
 
-func _on_character_chat_body() -> void:
+func _on_character_chat_body() -> void:#这几个函数都是为了实现概率性显示对话
 	var index := randf()
 	var temper = 0
 	for i in (sentences_body.size()):
@@ -276,7 +278,7 @@ func _on_character_chat_hair() -> void:
 			chattext.play_chat()
 			break
 
-func _on_character_chat_warn() -> void:
+func _on_character_chat_warn() -> void: #用于提醒状态的随机对话
 	var animatpick = ["drink1","drink1","drink2","eat1","eat1","eat2"]
 	if character.walkflag:
 		var indiexx = randi() % 3
@@ -307,7 +309,7 @@ func _on_character_chat_warn() -> void:
 		
 
 
-func _on_character_chat_awake() -> void:
+func _on_character_chat_awake() -> void:#从睡眠状态醒来后的动画
 	var index = randi_range(0,len(sentences_awake)-1)
 	chattext.text = sentences_awake[index]
 	character.animation_player.play("awake")
@@ -316,7 +318,7 @@ func _on_character_chat_awake() -> void:
 
 
 
-func _on_character_chat_gd() -> void:
+func _on_character_chat_gd() -> void:#敲母鸡获得功德功能的实现
 	var randpick = ["gdplus1",'gdplus2']
 	gdcount += 1
 	g_dcount.gongdplayer(gdcount)
