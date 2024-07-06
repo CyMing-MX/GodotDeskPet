@@ -25,7 +25,7 @@ signal chat_legs
 signal chat_warn
 signal chat_awake
 signal chat_gd
-
+#一共六个状态：空闲，说话，提醒，睡眠，拖拽和敲功德
 enum  state {
 	IDLE = 0,
 	SPEAKING,
@@ -34,9 +34,9 @@ enum  state {
 	DRAG,
 	GONGD,
 }
-
+#这个是加载音频文件
 var sounds := [load("res://asset/mp333/dianji.mp3"),load("res://asset/mp333/tixing1.mp3"),load("res://asset/mp333/tixing2.mp3")]
-
+#一堆初始化设置
 var current_state := state.IDLE
 var next_state := -1
 var speakingflag := false
@@ -52,12 +52,7 @@ var mouse_position: Vector2i
 
 var idle_animations := ["breath1","breath1","breath1","breath1","breath2","breath2","breath3"]
 var sleep_animations := ["sleep1","sleep2"]
-
-func timer_stop_continue(time:Timer) -> float:
-	var rest_timer = time.time_left
-	return rest_timer
-
-
+#用于从某一状态进入下一个状态的条件判断
 func get_next_state() -> int:
 	match  current_state:
 		state.IDLE:
@@ -106,7 +101,7 @@ func get_next_state() -> int:
 			if dragflag:
 				return state.DRAG
 	return -1
-
+#进入新状态后需要进行的事情
 func goto_new_state() -> void:
 	match  current_state:
 		state.IDLE:
@@ -155,7 +150,7 @@ func goto_new_state() -> void:
 			body_2d.input_pickable = false
 			leg_2d.input_pickable = false
 			
-	
+#用于需要长时间保持的状态，比如空闲和睡觉的时候需要一直播放相应的动画
 func do_current_state() -> void:
 	match  current_state:
 		state.IDLE:
@@ -178,14 +173,14 @@ func do_current_state() -> void:
 			
 		state.GONGD:
 			pass
-
+#每一帧刷新，用于获取新状态并进入下一状态
 func _physics_process(delta: float) -> void:
 	next_state = get_next_state()
 	if next_state != -1:
 		current_state = next_state
 		goto_new_state()
 	do_current_state()
-
+#右键长按实现拖拽（说实话按照这个逻辑写还是会卡顿），右键双击打开功德状态的flag
 func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	var Window_position:Vector2
 	var screen:Vector2
@@ -225,7 +220,7 @@ func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_
 			
 			
 			
-			#我不知道怎么才能根据移动的方向设置不同的动画。。。总之先放个目的在这
+			#我不知道怎么才能根据移动的方向设置不同的动画。。。总之先放个在这
 			#if get_tree().root.position[0] < Window_position.x:
 				#animation_player.play("drugleft")
 			#
@@ -237,7 +232,7 @@ func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_
 
 
 
-
+#以下几个都是用于不同部位被点击后发出相应信号，以显示不同文本
 func _on_head_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_released("chatstart"):
 		chat_head.emit()
@@ -261,7 +256,7 @@ func _on_hair_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		chat_hair.emit()
 		speakingflag = true
 
-
+#下面是几个提醒的计时器
 func _on_drinktimer_timeout() -> void:
 	drinkflag = true
 
@@ -277,7 +272,7 @@ func _on_savetimer_timeout() -> void:
 func _on_sleeptimer_timeout() -> void:
 	sleepflag = true
 
-
+#这个是睡觉状态持续一定时间后会自动返回空闲状态
 func _on_awaketimer_timeout() -> void:
 	if sleepflag:
 		animation_player.play("awake")
