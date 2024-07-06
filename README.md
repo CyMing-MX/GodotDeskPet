@@ -1,7 +1,7 @@
 # GodotDeskPet
 用Godot做的桌宠，可以实现点击说话，定时提醒，右键拖拽以及敲木鱼的功能。
 
-桌宠下载地址：https://pan.baidu.com/s/1a_gv7BLeGhtb7Mkk5E032Q?pwd=SXCK 提取码：SXCK
+桌宠下载地址：https://pan.baidu.com/s/13sN00XtU9FyBc1p5KZgjEQ?pwd=SXCK  提取码：SXCK
 
 表面上是1.0版本，实际上是3.0（），下一个版本我想实现（有生之年系列）：不同的拖拽方向有不同的动画；桌宠可以自己随机移动；用户可以自定义天气的城市及是否启用；桌宠可以跟随鼠标。
 
