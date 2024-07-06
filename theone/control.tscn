@@ -1,0 +1,319 @@
+[gd_scene load_steps=12 format=3 uid="uid://brcs7mao4j5b"]
+
+[ext_resource type="PackedScene" uid="uid://d3t0kxb5fqwjd" path="res://character.tscn" id="1_4jdcx"]
+[ext_resource type="Script" path="res://scene/mainworld.gd" id="1_pq1k0"]
+[ext_resource type="PackedScene" uid="uid://cdp1r8b0ned8y" path="res://chattext.tscn" id="3_4l06c"]
+[ext_resource type="Texture2D" uid="uid://bec2vrrtnxx3x" path="res://asset/little/cainter.png" id="3_sa02u"]
+[ext_resource type="Script" path="res://GDcount.gd" id="5_dfcgs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2owc7"]
+texture = ExtResource("3_sa02u")
+region_rect = Rect2(8, 16, 480, 360)
+modulate_color = Color(1, 1, 1, 0.74902)
+
+[sub_resource type="Theme" id="Theme_f04iq"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_2owc7")
+
+[sub_resource type="Animation" id="Animation_xjxi4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(235, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3nuyh"]
+resource_name = "gdplus1"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(235, -0.25, 0, 0.25, 0, 235, -0.25, 0, 0.25, 0, 235, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(55, -0.25, 0, 0.25, 0, 44, -0.4, 5, 0.4, -27, 32, -0.2, 15, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_q5j1b"]
+resource_name = "gdplus2"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(148, -0.25, 0, 0.25, 0, 148, -0.25, 0, 0.25, 0, 148, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(148, -0.25, 0, 0.25, 0, 138, -0.25, 0, 0.25, 0, 130, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7qwr"]
+_data = {
+"RESET": SubResource("Animation_xjxi4"),
+"gdplus1": SubResource("Animation_3nuyh"),
+"gdplus2": SubResource("Animation_q5j1b")
+}
+
+[node name="mainworld" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_pq1k0")
+
+[node name="character" parent="." instance=ExtResource("1_4jdcx")]
+position = Vector2(159, 54)
+
+[node name="weatherapi" type="HTTPRequest" parent="."]
+
+[node name="weathTimer" type="Timer" parent="weatherapi"]
+wait_time = 180.0
+autostart = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 23.0
+offset_right = 180.0
+offset_bottom = 139.0
+theme = SubResource("Theme_f04iq")
+
+[node name="chattext" parent="PanelContainer" instance=ExtResource("3_4l06c")]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 0
+metadata/_edit_pinned_properties_ = [&"horizontal_alignment"]
+
+[node name="GDcount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -35.0
+offset_right = 153.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.701961, 0.0117647, 0.101961, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "功德:0"
+vertical_alignment = 1
+max_lines_visible = 1
+script = ExtResource("5_dfcgs")
+
+[node name="GDTimer" type="Timer" parent="GDcount"]
+
+[node name="GDplus" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 235.0
+offset_top = -218.0
+offset_right = 286.0
+offset_bottom = -195.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.723273, 0.832314, 0.60167, 1)
+theme_override_font_sizes/font_size = 11
+text = "功德+1"
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="GDplayer" type="AnimationPlayer" parent="GDplus"]
+libraries = {
+"": SubResource("AnimationLibrary_h7qwr")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="chat_awake" from="character" to="." method="_on_character_chat_awake"]
+[connection signal="chat_body" from="character" to="." method="_on_character_chat_body"]
+[connection signal="chat_gd" from="character" to="." method="_on_character_chat_gd"]
+[connection signal="chat_hair" from="character" to="." method="_on_character_chat_hair"]
+[connection signal="chat_head" from="character" to="." method="_on_character_chat_head"]
+[connection signal="chat_legs" from="character" to="." method="_on_character_chat_legs"]
+[connection signal="chat_warn" from="character" to="." method="_on_character_chat_warn"]
+[connection signal="request_completed" from="weatherapi" to="." method="_on_weatherapi_request_completed"]
+[connection signal="timeout" from="weatherapi/weathTimer" to="." method="_on_weath_timer_timeout"]
+[connection signal="timeout" from="GDcount/GDTimer" to="GDcount" method="_on_gd_timer_timeout"]
